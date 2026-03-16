@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+
+<h2>Edit Record</h2>
+
+<form method="POST">
+
+{% csrf_token %}
+
+<label>1 KG Packets</label>
+<input type="number" name="packet_one_kg" value="{{record.packet_one_kg}}">
+
+<label>Half KG Packets</label>
+<input type="number" name="packet_half_kg" value="{{record.packet_half_kg}}">
+
+<label>Price 1 KG</label>
+<input type="number" name="price_one_kg" value="{{ record.price_one_kg }}">
+
+<label>Price Half KG</label>
+<input type="number" name="price_half_kg" value="{{ record.price_half_kg }}">
+
+<button type="submit">Update</button>
+
+</form>
+
+</div>
+
+{% endblock %}

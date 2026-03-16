@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class='container'>
+    <h2> Date Report</h2>
+    {% if messages %}
+    {% for message in messages %}
+        <div class="error">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% endif %}
+
+
+    <form method="POST">
+    {% csrf_token %}
+
+    <label>Start Date</label>
+    <input type="date" name='start_date' value="{{start_date}}" >
+
+    <label>END Date</label>
+    <input type="date" name="end_date" value="{{end_date}}">
+
+    <button type="submit"> Show Records</button>
+
+    </form>
+
+</div>
+
+{% if records %}
+<div class="container report-container">
+    
+    {% if start_date and end_date %}
+    <h3>Records</h3>
+    {% endif %}
+
+    <table class="report-table">
+    <tr>
+        <th>Date</th>
+        <th>One KG Packets</th>
+        <th>Half KG Packets</th>
+        <th>Total of One KG</th>
+        <th>Total of Half KG</th>
+    </tr>
+    
+    {% for record in records %}
+    <tr>
+        <td>{{record.created_at|date:"d M Y"}}</td>
+        <td>{{record.packet_one_kg}}</td>
+        <td>{{record.packet_half_kg}}</td>
+        <td>{{record.price_one_kg}}</td>
+        <td>{{record.price_half_kg}}</td>
+    </tr>
+
+    {% endfor %}
+
+    </table>
+</div>    
+
+{% elif records is not None %}
+<p style="text-align:center;"> No Records Found</p>
+   
+{% endif %}
+
+{% endblock %}    

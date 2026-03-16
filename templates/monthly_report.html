@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container report-container">
+
+<h2>Monthly Report</h2>
+
+<table class="report-table">
+
+<tr>
+<th>Month</th>
+<th>Total One KG Packets</th>
+<th>Total Half KG Packets</th>
+<th>Total One KG Amount</th>
+<th>Total Half KG Amount</th>
+<th>Overall Total</th>
+</tr>
+
+{% for row in data %}
+
+<tr>
+<td>{{ row.month|date:"M Y" }}</td>
+<td>{{ row.total_one_kg }}</td>
+<td>{{ row.total_half_kg }}</td>
+<td>{{ row.total_price_one_kg }}</td>
+<td>{{ row.total_price_half_kg }}</td>
+<td>{{ row.overall_total }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+{% endblock %}
